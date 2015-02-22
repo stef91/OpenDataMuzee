@@ -12,8 +12,24 @@ var config = require('./config/environment');
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
+var connection = require('express-myconnection');
+
+var mysql = require('mysql');
+var connectionDetails= {
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'dai'
+};
+
+app.use('/', connection(mysql, connectionDetails, 'single'));
+
 require('./config/express')(app);
 require('./routes')(app);
+
+app.get('/main', function(req, res){
+  res.render('partials/' + req.params.partialPath);
+});
 
 // Start server
 server.listen(config.port, config.ip, function () {
@@ -21,4 +37,5 @@ server.listen(config.port, config.ip, function () {
 });
 
 // Expose app
+var exports;
 exports = module.exports = app;

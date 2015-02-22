@@ -4,10 +4,10 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./project.controller');
+var controller = require('./muzee.controller');
 
 var router = express.Router();
 
-router.post('/', controller.index);
+//router.post('/', controller.index);
 
 module.exports = router;
