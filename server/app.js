@@ -19,7 +19,7 @@ var connectionDetails= {
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'dai'
+  database : 'opendata'
 };
 
 app.use('/', connection(mysql, connectionDetails, 'single'));
